@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HomePage } from './pages/HomePage';
-import { SignUpPage } from './pages/SignUpPage';
+import { SignUpPage, BuggyComponent } from './pages/SignUpPage';
 import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { Settings } from './pages/Settings';
 import { useAuthStore } from './store/useAuthStore';
 import { Loader } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
+import ErrorBoundary from './components/error_boundary';
 
 export const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -27,7 +29,7 @@ export const App = () => {
   }
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
       <Routes>
         <Route
           path="/"
@@ -35,8 +37,18 @@ export const App = () => {
         />
         <Route
           path="/signup"
-          element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
+          element={
+            !authUser ? (
+              <ErrorBoundary>
+                {/* <BuggyComponent /> */}
+                <SignUpPage />
+              </ErrorBoundary>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
+
         <Route
           path="/login"
           element={!authUser ? <LoginPage /> : <Navigate to="/" />}
@@ -47,6 +59,8 @@ export const App = () => {
         />
         <Route path="/settings" element={<Settings />} />
       </Routes>
+
+      <Toaster></Toaster>
     </>
   );
 };
