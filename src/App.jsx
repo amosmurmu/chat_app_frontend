@@ -7,13 +7,14 @@ import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { Settings } from './pages/Settings';
 import { useAuthStore } from './store/useAuthStore';
+import { useThemeStore } from './store/useThemeStore';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import ErrorBoundary from './components/error_boundary';
 
 export const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-
+  const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -28,7 +29,7 @@ export const App = () => {
     );
   }
   return (
-    <>
+    <div data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
@@ -61,7 +62,7 @@ export const App = () => {
       </Routes>
 
       <Toaster></Toaster>
-    </>
+    </div>
   );
 };
 

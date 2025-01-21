@@ -43,6 +43,9 @@ export const Navbar = () => {
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
+                {/* <button id="theme-toggle" class="btn btn-outline">
+                  🌙
+                </button> */}
                 <button className="flex gap-2 items-center" onClick={logout}>
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
