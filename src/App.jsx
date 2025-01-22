@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { HomePage } from './pages/HomePage';
-import { SignUpPage, BuggyComponent } from './pages/SignUpPage';
-import { LoginPage } from './pages/LoginPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { Settings } from './pages/Settings';
-import { useAuthStore } from './store/useAuthStore';
-import { useThemeStore } from './store/useThemeStore';
-import { Loader } from 'lucide-react';
-import { Toaster } from 'react-hot-toast';
-import ErrorBoundary from './components/error_boundary';
+import React, { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { HomePage } from "./pages/HomePage";
+import { SignUpPage, BuggyComponent } from "./pages/SignUpPage";
+import { LoginPage } from "./pages/LoginPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { Settings } from "./pages/Settings";
+import { useAuthStore } from "./store/useAuthStore";
+import { useThemeStore } from "./store/useThemeStore";
+import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
+import ErrorBoundary from "./components/error_boundary";
 
 export const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  console.log({ authUser });
+  // console.log({ authUser });
+  console.log({ onlineUsers });
 
   if (isCheckingAuth && !authUser) {
     return (

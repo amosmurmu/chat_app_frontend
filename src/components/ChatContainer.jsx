@@ -16,6 +16,7 @@ export const ChatContainer = () => {
     // console.log(selectedUser._id);
     getMessages(selectedUser._id);
   }, [selectedUser._id, getMessages]);
+
   if (isMessagesLoading) {
     return (
       <div className="flex-1 flex flex-col overflow-auto">
@@ -43,8 +44,8 @@ export const ChatContainer = () => {
                 <img
                   src={
                     message.senderId === authUser._id
-                      ? authUser.profilePic || "/avatar.png"
-                      : selectedUser.profilePic || "/avatar.png"
+                      ? authUser.profilePic || "/pfp_avatar.png"
+                      : selectedUser.profilePic || "/pfp_avatar.png"
                   }
                   alt="profile pic"
                 />
