@@ -10,6 +10,7 @@ export const Sidebar = () => {
 
   const { onlineUsers } = useAuthStore();
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
+  // const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -22,11 +23,26 @@ export const Sidebar = () => {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
+    <aside
+      className={`h-full 
+        lg:w-72 border-r border-base-300 flex flex-col transition-all duration-300`}
+    >
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium hidden lg:block">Contacts</span>
+
+          {/* Collapse Button
+          <button
+            className="p-2 rounded-full hover:bg-base-300 focus:outline-none transition"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+          >
+            {isCollapsed ? (
+              <ChevronRight className="text-primary" size={20} />
+            ) : (
+              <ChevronLeft className="text-primary" size={20} />
+            )}
+          </button> */}
         </div>
 
         <div className="mt-3 hidden lg:flex items-center gap-2">
@@ -80,6 +96,9 @@ export const Sidebar = () => {
             {/* User info - only visible on larger screens */}
             <div className="hidden lg:block text-left min-w-0">
               <div className="font-medium truncate">{user.fullName}</div>
+              <div className="text-sm text-zinc-400">
+                {onlineUsers.includes(user._id) ? "Online" : "Offline"}
+              </div>
             </div>
           </button>
         ))}
