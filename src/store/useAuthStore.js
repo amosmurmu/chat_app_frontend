@@ -70,11 +70,18 @@ export const useAuthStore = create((set, get) => ({
   updateProfile: async (data) => {
     set({ isUpdatingProfile: true });
     try {
-      const res = await axiosInstance.put("/auth/update-profile", data);
+      const res = await axiosInstance.put("/auth/update-profile", data, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Ensure correct header for file upload
+        },
+      });
       set({ authUser: res.data });
+
+      console.log("response data", res.data);
       toast.success("Profile updated successfully");
     } catch (error) {
       console.log("error in update profile", error);
+      console.error("Error details:", error.response?.data || error);
       toast.error(error.response.data.message);
     } finally {
       set({ isUpdatingProfile: false });

@@ -28,7 +28,6 @@ export const Sidebar = () => {
           <Users className="size-6" />
           <span className="font-medium hidden lg:block">Contacts</span>
         </div>
-        {/* TODO: Online filter toggle */}
 
         <div className="mt-3 hidden lg:flex items-center gap-2">
           <label className="cursor-pointer flex items-center gap-2">
@@ -63,7 +62,10 @@ export const Sidebar = () => {
           >
             <div className="relative mx-auto lg:mx-0">
               <img
-                src={user.profilePic || "/pfp_avatar.png"}
+                src={
+                  user.profilePic ||
+                  `https://randomuser.me/api/portraits/men/${user._id % 10}.jpg`
+                }
                 alt={user.name}
                 className="size-12 object-cover rounded-full"
               />

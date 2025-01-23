@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
-import AuthImagePattern from '../components/AuthImagePattern';
-import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from 'lucide-react';
+import { useState } from "react";
+import { useAuthStore } from "../store/useAuthStore";
+import AuthImagePattern from "../components/AuthImagePattern";
+import { Link } from "react-router-dom";
+import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
 
 export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const { login, isLoggingIn } = useAuthStore();
 
@@ -18,7 +18,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -67,7 +67,7 @@ export const LoginPage = () => {
                   <Lock className="h-5 w-5 text-base-content/40" />
                 </div>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
                   placeholder="••••••••"
                   value={formData.password}
@@ -100,14 +100,14 @@ export const LoginPage = () => {
                   Loading...
                 </>
               ) : (
-                'Sign in'
+                "Sign in"
               )}
             </button>
           </form>
 
           <div className="text-center">
             <p className="text-base-content/60">
-              Don&apos;t have an account?{' '}
+              Don&apos;t have an account?{" "}
               <Link to="/signup" className="link link-primary">
                 Create account
               </Link>
@@ -118,9 +118,9 @@ export const LoginPage = () => {
 
       {/* Right Side - Image/Pattern */}
       <AuthImagePattern
-        title={'Welcome back!'}
+        title={"Welcome back!"}
         subtitle={
-          'Sign in to continue your conversations and catch up with your messages.'
+          "Sign in to continue your conversations and catch up with your messages."
         }
       />
     </div>

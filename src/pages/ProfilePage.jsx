@@ -1,19 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
-import { Camera, Mail, User } from 'lucide-react';
+import React from "react";
+import { useState } from "react";
+import { useAuthStore } from "../store/useAuthStore";
+import { Camera, Mail, User } from "lucide-react";
 export const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
 
   const [selectedImg, setselectedImg] = useState(null);
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-
+    // console.log(file);
     if (!file) return;
 
     const formData = new FormData();
-    formData.append('profilePic', file);
-    console.log(formData);
+    formData.append("profilePic", file);
+    // console.log(formData);
+
+    // Debug FormData entries
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}:`, value); // Logs key-value pairs in FormData
+    // }
+
     await updateProfile(formData);
     // const reader = new FileReader();
 
@@ -27,8 +33,8 @@ export const ProfilePage = () => {
     // };
   };
   return (
-    <div className="h-screen pt-20">
-      <div className="max-w-2xl mx-auto p-4 py-8">
+    <div className="min-h-screen pt-20">
+      <div className="max-w-2xl sm:max-w-2xl mx-auto p-4 py-8">
         <div className="bg-base-300 rounded-xl p-6 space-y-8">
           <div className="text-center">
             <h1 className="text-2xl font-semibold">Profile</h1>
@@ -38,7 +44,7 @@ export const ProfilePage = () => {
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <img
-                src={selectedImg || authUser.profilePic || '/avatar.png'}
+                src={selectedImg || authUser.profilePic || "/pfp_avatar.png"}
                 alt="Profile"
                 className="size-32 rounded-full object-cover border-4 "
               />
@@ -50,7 +56,7 @@ export const ProfilePage = () => {
                   p-2 rounded-full cursor-pointer 
                   transition-all duration-200
                   ${
-                    isUpdatingProfile ? 'animate-pulse pointer-events-none' : ''
+                    isUpdatingProfile ? "animate-pulse pointer-events-none" : ""
                   }
                 `}
               >
@@ -67,8 +73,8 @@ export const ProfilePage = () => {
             </div>
             <p className="text-sm text-zinc-400">
               {isUpdatingProfile
-                ? 'Uploading...'
-                : 'Click the camera icon to update your photo'}
+                ? "Uploading..."
+                : "Click the camera icon to update your photo"}
             </p>
           </div>
 
@@ -99,7 +105,7 @@ export const ProfilePage = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center justify-between py-2 border-b border-zinc-700">
                 <span>Member Since</span>
-                <span>{authUser.createdAt?.split('T')[0]}</span>
+                <span>{authUser.createdAt?.split("T")[0]}</span>
               </div>
               <div className="flex items-center justify-between py-2">
                 <span>Account Status</span>

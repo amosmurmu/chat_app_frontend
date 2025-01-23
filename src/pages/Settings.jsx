@@ -1,13 +1,13 @@
-import React from 'react';
-import { useThemeStore } from '../store/useThemeStore';
-import { THEMES } from '../constants/index';
-import { Send } from 'lucide-react';
+import React from "react";
+import { useThemeStore } from "../store/useThemeStore";
+import { THEMES } from "../constants/index";
+import { Send } from "lucide-react";
 
 const PREVIEW_MESSAGES = [
   { id: 1, content: "Hey, How's it going", isSent: false },
   {
     id: 2,
-    content: "I'm doing great! Just working on some new features",
+    content: "I'm fine working on chat app rn",
     isSent: true,
   },
 ];
@@ -16,7 +16,7 @@ export const Settings = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
+    <div className="min-h-screen container mx-auto px-4 pt-20 max-w-5xl">
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold">Theme</h2>
@@ -32,7 +32,7 @@ export const Settings = () => {
               key={t}
               className={`
                 group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
-                ${theme === t ? 'bg-base-200' : 'hover:bg-base-200/50'}
+                ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
               `}
               onClick={() => setTheme(t)}
             >
@@ -51,7 +51,7 @@ export const Settings = () => {
                 {t.charAt(0).toUpperCase() + t.slice(1)}
               </span>
             </button>
-          ))}{' '}
+          ))}{" "}
         </div>
 
         {/* Preview Section */}
@@ -65,10 +65,10 @@ export const Settings = () => {
                 <div className="px-4 py-3 border-b border-base-300 bg-base-100">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-medium">
-                      J
+                      V
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm">John Doe</h3>
+                      <h3 className="font-medium text-sm">Virat Kohli</h3>
                       <p className="text-xs text-base-content/70">Online</p>
                     </div>
                   </div>
@@ -80,7 +80,7 @@ export const Settings = () => {
                     <div
                       key={message.id}
                       className={`flex ${
-                        message.isSent ? 'justify-end' : 'justify-start'
+                        message.isSent ? "justify-end" : "justify-start"
                       }`}
                     >
                       <div
@@ -88,8 +88,8 @@ export const Settings = () => {
                           max-w-[80%] rounded-xl p-3 shadow-sm
                           ${
                             message.isSent
-                              ? 'bg-primary text-primary-content'
-                              : 'bg-base-200'
+                              ? "bg-primary text-primary-content"
+                              : "bg-base-200"
                           }
                         `}
                       >
@@ -99,8 +99,8 @@ export const Settings = () => {
                             text-[10px] mt-1.5
                             ${
                               message.isSent
-                                ? 'text-primary-content/70'
-                                : 'text-base-content/70'
+                                ? "text-primary-content/70"
+                                : "text-base-content/70"
                             }
                           `}
                         >
