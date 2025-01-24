@@ -20,7 +20,7 @@ export const App = () => {
   }, [checkAuth]);
 
   // console.log({ authUser });
-  console.log({ onlineUsers });
+  // console.log({ onlineUsers });
 
   if (isCheckingAuth && !authUser) {
     return (
